@@ -32,7 +32,7 @@
     const showClass = "show";
     
     $(window).on("load resize", function() {
-		setTimeout(() => { markActiveMenu(); }, 1000);
+		// setTimeout(() => { markActiveMenu(); }, 1000);
         if (this.matchMedia("(min-width: 992px)").matches) {
             $dropdown.hover(
             function() {
@@ -153,7 +153,7 @@
 	
 	var markActiveMenu = function() {
 		var url = window.location.pathname;
-		urlRegExp = new RegExp(url.replace(/\/$/, '/') + "$");  
+		urlRegExp = new RegExp(url.replace(/\/$/, '') + "$");  
 	    $('.nav-link').each(function () {
 	        if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
 	            $(this).addClass('active');
