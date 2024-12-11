@@ -143,7 +143,7 @@ h6,
 
 .navbar-dark .navbar-nav .nav-link:hover,
 .navbar-dark .navbar-nav .nav-link.active {
-    color: var(--primary);
+    color: #152947;	/*var(--primary);*/
 }
 
 .navbar-dark .navbar-brand h1 {
@@ -181,7 +181,7 @@ h6,
         left: 0;
         border-bottom: 1px solid rgba(256, 256, 256, .1);
         z-index: 999;
-        background-color: #ffffff1f;
+        background-color: #ffffff4f;
     }
     
     .sticky-top.navbar-dark {
@@ -196,7 +196,7 @@ h6,
         height: 2px;
         bottom: -1px;
         left: 50%;
-        background: var(--primary);
+        background: #152947; /*var(--primary);*/
         transition: .5s;
     }
 
