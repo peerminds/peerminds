@@ -156,7 +156,7 @@
         if(url == '/') {
             url = "/index.html";
         }
-		urlRegExp = new RegExp(url.replace(/\/$/, '') + "$");  
+		var urlRegExp = new RegExp(url.replace(/\/$/, '') + "$");  
 	    $('.nav-link').each(function () {
 	        if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
 	            $(this).addClass('active');
