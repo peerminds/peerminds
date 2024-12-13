@@ -152,7 +152,10 @@
 	};
 	
 	var markActiveMenu = function() {
-		var url = window.location.pathname,
+		var url = window.location.pathname;
+        if(url == '/') {
+            url = "/index.html";
+        }
 		urlRegExp = new RegExp(url.replace(/\/$/, '') + "$");  
 	    $('.nav-link').each(function () {
 	        if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
