@@ -131,21 +131,23 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="bg-primary rounded h-100 d-flex align-items-center p-5 wow zoomIn" data-wow-delay="0.9s">
-                    	<!-- Status Message -->
-   						<div id="statusMessage" class="mt-3"></div>
-                        <form id="quoteForm">
+                        <form id="quoteForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScw6R1a474t-AcMcf1ruDq8tRBKlcNN93SAWHyEvKvfUpaw8w/formResponse" method="POST" target="hidden_iframe">
                             <div class="row g-3">
+                            	<!-- Status Message -->
+		   						<div class="col-xl-12">
+		   							<div id="statusMessage" class="mt-3" style="display:none;"></div>
+		   						</div>
                                 <div class="col-xl-12">
-                                    <input type="text" id="name" class="form-control bg-light border-0" placeholder="Your Name" style="height: 55px;">
+                                    <input type="text" id="name" name="entry.2116052852" class="form-control bg-light border-0" placeholder="Your Name" style="height: 55px;">
                                 </div>
                                 <div class="col-12">
-                                    <input type="tel" id="phone" class="form-control bg-light border-0" placeholder="Your Phone Number" style="height: 55px;">
+                                    <input type="tel" id="phone" name="entry.1183170113" class="form-control bg-light border-0" placeholder="Your Phone Number" style="height: 55px;">
                                 </div>
                                 <div class="col-12">
-                                    <input type="email" id="email" class="form-control bg-light border-0" placeholder="Your Email" style="height: 55px;">
+                                    <input type="email" id="email" name="entry.1558582620" class="form-control bg-light border-0" placeholder="Your Email" style="height: 55px;">
                                 </div>
                                 <div class="col-12">
-                                    <select id="service" class="form-select bg-light border-0" style="height: 55px;">
+                                    <select id="service" name="entry.74352180" class="form-select bg-light border-0" style="height: 55px;">
                                         <option selected>Select A Service</option>
                                         <option value="Human Resource">Human Resource</option>
                                         <option value="Web Development">Web Development</option>
@@ -157,14 +159,22 @@
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <textarea id="summary" class="form-control bg-light border-0" rows="7" placeholder="Summary"></textarea>
+                                    <textarea id="summary" name="entry.1060472253" class="form-control bg-light border-0" rows="4" placeholder="Summary"></textarea>
                                 </div>
-                                <div class="g-recaptcha" data-sitekey="6Lcc3IsqAAAAAPe69a4OXdDwnqRgPJQSDzHSNpfj"></div>
+                                <div class="col-6">
+                                    <!-- CAPTCHA -->
+                                    <span id="captcha" class="form-control border-0 bg-light px-4 py-4"></span>
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" id="captchaInput" class="form-control border-0 bg-light px-4 py-4" placeholder="Solve Captcha" required>
+                                </div>
                                 <div class="col-12">
                                     <button class="btn btn-dark w-100 py-3" type="submit">Request A Quote</button>
                                 </div>
                             </div>
                         </form>
+                        <!-- Hidden IFrame to prevent redirection -->
+					    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
                     </div>
                 </div>
             </div>

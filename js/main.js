@@ -32,7 +32,7 @@
     const showClass = "show";
     
     $(window).on("load resize", function() {
-		// setTimeout(() => { markActiveMenu(); }, 1000);
+		setTimeout(() => { markActiveMenu(); }, 1000);
         if (this.matchMedia("(min-width: 992px)").matches) {
             $dropdown.hover(
             function() {
@@ -152,7 +152,7 @@
 	};
 	
 	var markActiveMenu = function() {
-		var url = window.location.pathname;
+		var url = window.location.pathname,
 		urlRegExp = new RegExp(url.replace(/\/$/, '') + "$");  
 	    $('.nav-link').each(function () {
 	        if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
@@ -161,82 +161,66 @@
 	    });
 	};
 	
+	let captchaAnswer = 0;
+	
+	var generateCaptcha = function() {
+		// Generate CAPTCHA
+	    const num1 = Math.floor(Math.random() * 10) + 1;
+	    const num2 = Math.floor(Math.random() * 10) + 1;
+	    captchaAnswer = num1 + num2;
+	
+	    $('#captcha').text(`${num1} + ${num2}`);
+	}
+	
 	$(document).ready(function () {
 		includeHTML();
+		
+		generateCaptcha();
+		
         $('#contactForm').on('submit', function (e) {
-            e.preventDefault();
-			$('#statusMessage').html(``);
-            const name = $('#name').val()?.trim();
-			const phone = $('#phone').val()?.trim();
-            const email = $('#email').val()?.trim();
-			const subject = $('#subject').val()?.trim();
-            const message = $('#message').val()?.trim();
-            const recaptchaResponse = '';/*grecaptcha.getResponse();
-
-            if (!recaptchaResponse) {
-                $('#statusMessage').html(`<div class="alert alert-danger">Please complete the CAPTCHA.</div>`);
+			e.preventDefault();
+			$('#statusMessage').html(``).hide();
+			// CAPTCHA validation
+            const userCaptchaAnswer = parseInt($('#captchaInput').val());
+            if (userCaptchaAnswer !== captchaAnswer) {
+                $('#statusMessage').html(`<div class="alert alert-danger">Please complete the CAPTCHA.</div>`).fadeIn();
                 return;
-            }*/
-			
+            }
+			this.submit();
+			$('#statusMessage').html('<div class="alert alert-success">Submitting your response...please wait!</div>').css('color', 'blue').fadeIn();
 			$('#spinner').removeClass('bg-white');
 			$('#spinner').addClass('show bg-trans');
-            $.ajax({
-                url: 'contact',
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({ name, phone, email, subject, message, recaptchaResponse }),
-                success: function (response) {
-					$('#spinner').removeClass('show bg-trans');
-					$('#statusMessage').html(`<div class="alert alert-success">${response.message || 'Hurray, message sent successfully!'}</div>`);
-                    /*alert(response.message || "Hurray, message sent successfully!");*/
-                    $('#contactForm')[0].reset();
-                    grecaptcha.reset();
-                },
-                error: function (xhr) {
-					$('#spinner').removeClass('show bg-trans');
-					$('#statusMessage').html(`<div class="alert alert-danger">${xhr.responseJSON?.error || 'Sorry, failed to send message! Please try again.'}</div>`);
-                    /*alert(xhr.responseJSON?.error || "Sorry, failed to send message! Please try again.");*/
-                }
-            });
+			// Trigger a delayed success message (simulating success)
+	        $('#hidden_iframe').on('load', function () {
+	            $('#statusMessage').html('<div class="alert alert-success">Hurray, message sent successfully!</div>').fadeIn();
+				$('#contactForm')[0].reset();
+				generateCaptcha();
+				$('#spinner').removeClass('show bg-trans');
+	        });
         });
+		
 		
 		$('#quoteForm').on('submit', function (e) {
             e.preventDefault();
-			$('#statusMessage').html(``);
-            const name = $('#name').val()?.trim();
-			const phone = $('#phone').val()?.trim();
-            const email = $('#email').val()?.trim();
-			const service = $('#service').val()?.trim();
-            const summary = $('#summary').val()?.trim();
-            const recaptchaResponse = grecaptcha.getResponse();
-
-            if (!recaptchaResponse) {
-                $('#statusMessage').html(`<div class="alert alert-danger">Please complete the CAPTCHA.</div>`);
+			$('#statusMessage').html(``).hide();
+			// CAPTCHA validation
+            const userCaptchaAnswer = parseInt($('#captchaInput').val());
+            if (userCaptchaAnswer !== captchaAnswer) {
+                $('#statusMessage').html(`<div class="alert alert-danger">Please complete the CAPTCHA.</div>`).fadeIn();
                 return;
             }
-			
+			this.submit();
+			$('#statusMessage').html('<div class="alert alert-success">Submitting your request...please wait!</div>').css('color', 'blue').fadeIn();
 			$('#spinner').removeClass('bg-white');
 			$('#spinner').addClass('show bg-trans');
-            $.ajax({
-                url: 'quote',
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({ name, phone, email, service, summary, recaptchaResponse }),
-                success: function (response) {
-					$('#spinner').removeClass('show bg-trans');
-					$('#statusMessage').html(`<div class="alert alert-success">${response.message || 'Hurray, quotation request sent successfully!'}</div>`);
-                    /*alert(response.message || "Hurray, quotation request sent successfully!");*/
-                    $('#contactForm')[0].reset();
-                    grecaptcha.reset();
-                },
-                error: function (xhr) {
-					$('#spinner').removeClass('show bg-trans');
-					$('#statusMessage').html(`<div class="alert alert-danger">${xhr.responseJSON?.error || 'Sorry, failed to send quotation request! Please try again.'}</div>`);
-                    /*alert(xhr.responseJSON?.error || "Sorry, failed to send quotation request! Please try again.");*/
-                }
-            });
+			// Trigger a delayed success message (simulating success)
+	        $('#hidden_iframe').on('load', function () {
+	            $('#statusMessage').html('<div class="alert alert-success">Hurray, quotation request sent successfully!').fadeIn();
+				$('#quoteForm')[0].reset();
+				generateCaptcha();
+				$('#spinner').removeClass('show bg-trans');
+	        });
         });
     });
 	
 })(jQuery);
-
