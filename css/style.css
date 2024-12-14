@@ -246,6 +246,9 @@ h6,
         font-size: 30px;
         font-weight: 600 !important;
     }
+    .bg-footer {
+        background-position-y: bottom !important;
+    }
 }
 
 .carousel-control-prev,
