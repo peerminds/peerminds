@@ -171,6 +171,11 @@ h6,
     .navbar-dark .navbar-brand h1 {
         color: var(--primary);
     }
+
+    .service-item-home a.btn {
+        bottom: -24px !important;
+        opacity: 1 !important;
+    }
 }
 
 @media (min-width: 992px) {
