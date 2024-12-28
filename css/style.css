@@ -582,6 +582,11 @@ h6,
     background-size: cover;
 }
 
+.bg-header-privacy {
+    background: linear-gradient(rgba(9, 30, 62, .7), rgba(9, 30, 62, .7)), url(../img/privacy-banner.jpg) center center no-repeat;
+    background-size: cover;
+}
+
 .bg-about-Vert {
 	background: linear-gradient(rgba(9, 30, 62, .7), rgba(9, 30, 62, .7)), url(../img/burjkhalifa.jpg) center center no-repeat;
     background-size: cover;
