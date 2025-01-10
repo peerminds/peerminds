@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap:https://www.peer-minds.com/sitemap.xml
