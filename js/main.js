@@ -32,6 +32,7 @@
     const showClass = "show";
     
     $(window).on("load resize", function() {
+        includeHTML();
 		setTimeout(() => { markActiveMenu(); }, 1000);
         if (this.matchMedia("(min-width: 992px)").matches) {
             $dropdown.hover(
@@ -176,8 +177,6 @@
 	}
 	
 	$(document).ready(function () {
-		includeHTML();
-		
 		generateCaptcha();
 		
         $('#contactForm').on('submit', function (e) {
